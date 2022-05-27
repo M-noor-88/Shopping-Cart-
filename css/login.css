@@ -1,0 +1,24 @@
+:root {
+    --main-color: #59ab6e;
+    --section-color: #212934;
+    --bk-color: #cdcaca;
+    --alter-color: #212934;
+    --transition: 0.4s;
+}
+
+body {
+    background-color: #e5e5e5;
+}
+
+
+
+/*! ============= Form style  */
+.section-form form a {
+    text-decoration: underline;
+    color: #9ccaa7;
+}
+@media(max-width:768px) {
+    .section-form form a {
+        font-size: 14px;
+    }
+}

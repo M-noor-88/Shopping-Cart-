@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up || Shopping Cart</title>
+
+    <!-- Render all element Normaly  -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <!-- Font Awesome Library  -->
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/all.css">
+    <!-- General style  -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- special style  -->
+    <link rel="stylesheet" href="css/register.css">
+    <!-- Google Fonts  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;400;600;700&family=Oswald:wght@200;300;500&family=Poppins:ital,wght@0,100;0,200;0,300;0,500;0,600;1,200;1,400;1,500&family=Ubuntu:wght@300;400&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- ! Header  -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="brand"> Shopping </a>
+
+                <nav>
+                    <li> <a href="login.html"> Sign in </a></li>
+                    <li><a href="register.html"> Sign up </a></li>
+                </nav>
+            </div>
+        </div>
+        </div>
+    </header>
+    <!-- ? ======================================= -->
+    <!--  !Section Form  -->
+
+    <section class="section-form">
+        <h2>Account Register</h2>
+        <form id="form" novalidate>
+
+            <div class="form-control ">
+                <label for="user">Username *</label>
+                <input type="text" value="" id="user" placeholder="User Name">
+                <i class="fa-solid fa-circle-check"></i>
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <small>Error Message</small>
+            </div>
+            <!--  *------- -->
+            <div class="form-control ">
+                <label for="email">Email *</label>
+                <input type="text" value="" id="email" placeholder="Email">
+                <i class="fa-solid fa-circle-check"></i>
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <small>Error Message</small>
+            </div>
+            <!--  *------- -->
+            <div class="form-control">
+                <label for="password">Password *</label>
+                <input type="password" value="" id="password" placeholder="User Password" />
+                <i class="fa-solid fa-circle-check"></i>
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <small>Error Message</small>
+                
+                <i class="fa-solid fa-eye-slash" id="togglePassword"></i>
+            </div>
+            <!--  *------- -->
+            <input type="submit" value="Sign up" id="sign-up">
+        </form>
+
+    </section>
+    <!-- ? ======================================= -->
+
+    <script src="js/script.js"></script>
+    <script src="js/register.js"></script>
+</body>
+
+</html>
