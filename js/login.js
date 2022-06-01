@@ -5,18 +5,24 @@ let password = document.querySelector("#password");
 let login_btn = document.querySelector("#login");
 
 
-login_btn.addEventListener("click", function (e) {
+// let getUser = window.localStorage.getItem('username');
+let getUser = window.localStorage.getItem('username');
+let getPass = window.localStorage.getItem('password');
+
+
+login_btn.addEventListener("click", login)
+
+
+function login(e) {
     e.preventDefault();
 
-    //    if (username.value === "" || email.value === "" || password.value === "")
-    // alert("Please Enter Data");
     checkInput();
     // Check if All inputs validat
     if (hasSuccsess())
-        console.log("TRUE");
+        // redirect to login page for validation After 1.5 sec
+        setTimeout(() => { window.location = '../index.html' }, 1500)
+}
 
-
-})
 
 
 // Check Inputs values 
@@ -26,22 +32,27 @@ function checkInput() {
     let passValue = password.value.trim();
 
     // username ----------------
-    if (userValue === '') {
+    if (userValue === getUser) {
+        setSeccussFor(username);
+        console.log("True User");
+    }
+    else if (userValue === '') {
         // Show Error 
         // Add Error class
         setErrorFor(username, "Username Can't be blank");
     }
     else {
         // Add Seccuss Class
-        setSeccussFor(username);
+        setErrorFor(username, "Wrong User Name");
     }
     // password----------------
     if (passValue === '')
         setErrorFor(password, "Password Can't be blank");
+    else if (passValue !== getPass)
+        setErrorFor(password, " Wrong Password");
     else if (passValue.length <= 8 && passValue != '')
-        setErrorFor(password, "Password should be more 8 character")
-    else
-        setSeccussFor(password);
+        setErrorFor(password, "Password should be more than 8 character")
+    else if (passValue === getPass) { setSeccussFor(password); console.log("True password"); }
 
 }
 

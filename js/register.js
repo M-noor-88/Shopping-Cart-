@@ -9,15 +9,18 @@ let register_btn = document.querySelector("#sign-up");
 register_btn.addEventListener("click", function (e) {
     e.preventDefault();
 
-    //    if (username.value === "" || email.value === "" || password.value === "")
-    // alert("Please Enter Data");
     checkInput();
     // Check if All inputs validat
-    if (hasSuccsess())
-        console.log("TRUE");
+    if (hasSuccsess()) {
+        window.localStorage.setItem("username", username.value);
+        window.localStorage.setItem("email", email.value);
+        window.localStorage.setItem("password", password.value);
 
-        
-    })
+        // redirect to login page for validation After 1.5 sec
+        setTimeout(() => { window.location = '../login.html' }, 1500)
+
+    }
+})
 
 
 
@@ -43,7 +46,7 @@ function checkInput() {
     if (passValue === '')
         setErrorFor(password, "Password Can't be blank");
     else if (passValue.length <= 8 && passValue != '')
-        setErrorFor(password, "Password should be more 8 character")
+        setErrorFor(password, "Password should be more than 8 character")
     else
         setSeccussFor(password);
     // Email----------------

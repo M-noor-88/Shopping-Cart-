@@ -77,18 +77,32 @@ header .brand {
     color: var(--main-color);
 }
 
-header nav {
+header nav ul{
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 30px;
 }
+/* After login or sign in  */
+header nav ul#user_info{
+    display: none;
+    justify-content: space-around;
+    align-items: center;
+    gap: 0;
+}
+header nav ul#user_info li:last-of-type {
+    margin-left: 20px;
+}
+nav ul#user_info i{
+    color: #212934;
+}
 
+/* ======== */
 header nav li a {
     display: block;
     color: var(--alter-color);
     min-width: 50px;
-    margin: 0 10px;
+    margin: 0 5px;
     position: relative;
     padding: 10px;
 }
