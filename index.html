@@ -29,31 +29,110 @@
     <!-- ! Header  -->
     <header>
         <div class="container">
-            <div class="header-content">
-                <a href="index.html" class="brand"> Shopping </a>
 
-                <nav>
-                    <ul id="links">
+            <div class="header-content">
+
+                <a href="index.html" class="brand"> Shopping </a>
+                <!-- -------------------- Large Screen ---------------------- -->
+                <nav id="nav">
+                    <div class="menuToggel"></div>
+                    <ul class="links" id="links">
                         <li> <a href="login.html"> Sign in </a></li>
                         <li><a href="register.html"> Sign up </a></li>
                         <li><a href="#home">Home</a></li>
                     </ul>
                     <!-- === When Login Or Sign UP show this -->
-                    <ul id="user_info">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#" id="user">USER</a></li>
-                        <a href="#"><i class="fa-solid fa-user" id="info"></i></a>
-                        <li><a href="#" id="logout">Log out</a></li>
-                        <a href="#"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
-
+                    <ul id="user_info" class="userInfo">
+                        <li><a href="#home">Home</a> <i class="fa-solid fa-house"></i></li>
+                        <li><a href="#" id="user">USER </a> <i class="fa-solid fa-user"></i> </li>
+                        <li><a href="#" id="logout">Log out</a> <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        </li>
                     </ul>
                 </nav>
+
             </div>
-        </div>
         </div>
     </header>
     <!-- ================ -->
-    <h1 style="position:absolute; top:50%; left:50%; transform: translateX(-50%); ">Home Page</h1>
+    <!-- ! Section product  -->
+    <section class="home">
+        <div class="container">
+            <div class="slide-container">
+                <div id="slide-number" class="slide-number"></div>
+                <!-- slides image  -->
+                <div class="slide slide-one ">
+                    <div class="content-slide">
+                        <h3> <span class="brand">Shopping</span> eCommerce</h3>
+                        <h2>Tiny and Perfect eCommerce Template</h2>
+                        <p>Zay Shop is an eCommerce HTML5 CSS template with latest version of Bootstrap 5 (beta 1). This
+                            template is 100% free
+                            provided by TemplateMo website. Image credits go to Freepik Stories, Unsplash and Icons 8.
+                        </p>
+                    </div>
+                    <div class="image-slide">
+                        <img src="/images/home-slider1.jpg" alt="img-slide-one">
+                    </div>
+                </div>
+
+                <div class="slide slide-two ">
+                    <div class="content-slide">
+                        <h3>Proident occaecat</h3>
+                        <h2>Aliquip ex ea commodo consequat</h2>
+                        <p>ZYou are permitted to use this Zay CSS template for your commercial websites. You are not
+                            permitted to re-distribute the
+                            template ZIP file in any kind of template collection websites.
+                        </p>
+                    </div>
+                    <div class="image-slide">
+                        <img src="/images/home-slider2.jpg" alt="img-slide-one">
+                    </div>
+                </div>
+
+                <div class="slide slide-three">
+                    <div class="content-slide">
+                        <h3> Repr in voluptate</h3>
+                        <h2>Ullamco laboris nisi ut</h2>
+                        <p>We bring you 100% free CSS templates for your websites. If you wish to support TemplateMo,
+                            please make a small
+                            contribution via PayPal or tell your friends about our website. Thank you.
+                        </p>
+                    </div>
+                    <div class="image-slide">
+                        <img src="/images/home-slider3.jpg" alt="img-slide-three">
+                    </div>
+                </div>
+
+                <!-- End slides image  -->
+            </div>
+            <!-- Start Slider control  -->
+            <div class="slider-control">
+                <span id="prev" class="prev">Prev</span>
+                <span id="indecator" class="indecator">
+                    <!-- <ul>
+                        <li class="active">1</li>
+                        <li>2</li>
+                        <li>3</li>
+                    </ul> -->
+                </span>
+                <span id="next" class="next">Next</span>
+            </div>
+            <!-- end Slider control  -->
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <h1 style="position:absolute; top:50%; left:50%; transform: translateX(-50%); ">Home Page</h1> -->
 
 
 

@@ -10,3 +10,40 @@ body {
     background-color: #e5e5e5;
 }
 
+/* header style  */
+.header-content nav ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background-color: #fff;
+}
+
+.header-content nav li a::after {
+    bottom: -15px;
+}
+
+@media (max-width: 768px) {
+    .header-content .nav-reg li a {
+        position: relative;
+    }
+
+    .header-content .nav-reg {
+        overflow: visible;
+    }
+
+    .header-content .nav-reg li a::after {
+        content: "";
+        position: absolute;
+        bottom: -20px;
+        /* bottom: -5px; */
+        left: 0;
+        height: 4px;
+        width: 0%;
+        background-color: var(--main-color);
+    }
+
+    .header-content .nav-reg li:hover a::after {
+        width: 100%;
+    }
+}

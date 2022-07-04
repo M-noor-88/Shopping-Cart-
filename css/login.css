@@ -11,12 +11,45 @@ body {
 }
 
 
+/* header style  */
+.header-content nav ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background-color: #fff;
+}
+.header-content .nav-log li a::after {
+    bottom: -15px;
+}
+@media (max-width: 768px) {
+    .header-content .nav-log li a {
+        position: relative;
+    }
+    .header-content .nav-log {
+        overflow: visible;
+    }
+    .header-content .nav-log li a::after {
+        content: "";
+        position: absolute;
+        bottom: -20px;
+        /* bottom: -5px; */
+        left: 0;
+        height: 4px;
+        width: 0%;
+        background-color: var(--main-color);
+    }
+    .header-content .nav-log li:hover a::after {
+        width: 100%;
+    }
+}
 
 /*! ============= Form style  */
 .section-form form a {
     text-decoration: underline;
     color: #9ccaa7;
 }
+
 @media(max-width:768px) {
     .section-form form a {
         font-size: 14px;
