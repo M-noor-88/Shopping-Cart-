@@ -8,7 +8,7 @@ let checkUser = window.localStorage.getItem('username');
 if (checkUser) {
     links.remove();
     userInfo.style.display = "flex";
-    userDom.innerHTML = checkUser;
+    userDom.innerHTML = checkUser + ` <i class="fa-solid fa-user"></i> `;
 }
 else {
     userInfo.remove();
@@ -65,6 +65,7 @@ let slidecount = sliderImages.length;
 // set current slide
 let currentSlide = 1;
 
+
 // Slide number Element
 let slideNumElement = document.getElementById("slide-number");
 
@@ -103,7 +104,7 @@ let arrPaginationBullets = Array.from(document.querySelectorAll(' #pagination-ul
 
 // loop through pagination bullets
 for (let i = 0; i < arrPaginationBullets.length; i++) {
-    arrPaginationBullets[i].onclick = function() {
+    arrPaginationBullets[i].onclick = function () {
         currentSlide = parseInt(this.getAttribute('data-index')); // return number
         theChecker();
     }
@@ -113,6 +114,14 @@ for (let i = 0; i < arrPaginationBullets.length; i++) {
 // trigger the checker func
 theChecker();
 
+// Animation slide 
+window.setTimeout(anima, 3500);
+
+function anima() {
+    currentSlide++;
+    theChecker();
+    // console.log(currentSlide);
+}
 
 // Next
 function Next() {
@@ -135,7 +144,6 @@ function Prev() {
         theChecker();
     }
 }
-
 
 
 // Checker function 
@@ -163,7 +171,6 @@ function theChecker() {
     else
         nextButton.classList.remove('dis');
 
-
 }
 
 //  Remove all active class from slides And pagination bullets
@@ -177,4 +184,201 @@ function remaoveAllActive() {
         bullet.classList.remove('active');
     })
 }
-// ! ------------------------------------------------------------------ 
+
+
+// ! ------------------------------------------------------------------
+// * ----------------------------------
+// !  products Section
+// * ----------------------------------
+// Define Products  
+let productsDom = document.querySelector(".products");
+let cartsProductsDom = document.querySelector(".products-added div");
+let badgeCount = document.querySelector(".badge");
+// Array of Products 'Objscts'
+let products = [
+    {
+        id: 0,
+        title: 'Shoes Model 999dx Nike',
+        size: 'large',
+        imageUrl: 'images/shoes-1-produ.jpg'
+    },
+    {
+        id: 1,
+        title: 'Shoes Model 1002 Nike ',
+        size: 'small',
+        imageUrl: 'images/shoes-3-produ.jpg'
+    },
+    {
+        id: 2,
+        title: 'Shoes Model XYZ12 Nike',
+        size: 'medium',
+        imageUrl: 'images/shoes-2-produ.jpg'
+    },
+    {
+        id: 3,
+        title: 'Shoes Model 2022 Nike',
+        size: 'large',
+        imageUrl: 'images/shoes-4-produ.jpg'
+    },
+    {
+        id: 4,
+        title: 'Shoes Model kalL Nike',
+        size: 'small',
+        imageUrl: 'images/shoes-5-produ.jpg'
+    },
+    {
+        id: 5,
+        title: 'Shoes Model QW213 Nike',
+        size: 'medium',
+        imageUrl: 'images/shoes-6-produ.jpg'
+    }
+];
+
+// ?---------------------------------
+// * I had a problem here with .map()  :: map show Extra comma after each element of array
+// * because innerHtml Take String and map() return array >> I have two Solution
+// ?---------------------------------
+
+
+// * First : add join('') after map() to convert to string
+// function Drawprod(item) {
+//     return ` <div class="product-item">
+//                     <img src="${item.imageUrl}" class="prod-img" alt="Shoes-nike1">
+
+//                     <div class="prod-desc">
+//                         <h3> ${item.title} </h3>
+//                         <p>lore Lorem ipsum dolor nsectetur adipisicing elit.</p>
+//                         <span> Size: ${item.size}</span>
+//                     </div>
+
+//                     <div class="prod-actions">
+//                         <button class="add-to-cart">Add to cart</button>
+
+//                         <i class="fav fa-solid fa-heart"></i>
+//                     </div>
+
+//                 </div> `;
+// }
+// productsDom.innerHTML +=products.map(Drawprod).join('');
+//----------------------
+
+// * Second : add directly the element <div> into page when looping using map()
+function drawProductUL() {
+
+    let product = products.map((item) => {
+        productsDom.innerHTML += `
+                <div class="product-item">
+                    <img src="${item.imageUrl}" class="prod-img" alt="Shoes-nike1">
+
+                    <div class="prod-desc">
+                        <h3> ${item.title} </h3>
+                        <p>lore Lorem ipsum dolor nsectetur adipisicing elit.</p>
+                        <span> Size: ${item.size}</span>
+                    </div>
+
+                    <div class="prod-actions">
+                        <button class="add-to-cart" id="${item.id}" >Add to cart</button>
+                        <i class="fav fa-solid fa-heart"></i>
+                    </div>
+
+                </div>
+        `;
+    });
+}
+drawProductUL();
+//----------------------
+
+//  Add To Cart and Login Checker
+let btnAddCart = Array.from(document.querySelectorAll('.add-to-cart'));
+
+// function to check login user when click Add to cart
+function checkLogAddToCart() {
+    if (checkUser) {
+        // TODO MAke function that hold All functions Add to cart and trigger it here 
+        console.log("Added to Cart");
+    }
+    else {
+        window.location.href = "../register.html";
+    }
+}
+btnAddCart.map((e) => { e.addEventListener("click", checkLogAddToCart) });
+
+
+// function to Add item to Cart => get the id of item and found it 
+let arrLocalStorageProduct = []; // this array store the products that choose to set in local storage
+function addItemToCart(id) {
+    let choosenItem = products.find(item => item.id === id);
+
+    // Set to local after push item into  array arrLocalStorageProduct
+    arrLocalStorageProduct.push(choosenItem);
+
+    cartsProductsDom.innerHTML += `<p>${choosenItem.title} <i id="${choosenItem.id}" onclick="removeItemCart(${choosenItem.id})" class="fa-solid fa-trash"></i> </p> `;
+
+    window.localStorage.setItem("arr", JSON.stringify(arrLocalStorageProduct))
+
+}
+btnAddCart.map((e) => {
+    e.addEventListener("click", function () {
+        addItemToCart(parseInt(e.id)); // pass Argument to function Above  in addEventListener
+
+    })
+});
+
+
+
+//  function to remove item from localstorage
+function removeItemCart(id) {
+    let item = arrLocalStorageProduct.find(function (e) {
+        return e.id === id;
+    });
+
+    // window.localStorage.removeItem(id);
+    deleteItem(id);
+    // delete from div
+    document.getElementById(id).parentElement.remove();
+
+}
+
+
+
+// function To Delete Item from localstorage 
+// we put all products in localStorage to new Array and splice it 
+function deleteItem(index) {
+    var existingEntries = JSON.parse(localStorage.getItem("arr"));
+    existingEntries.splice(arrLocalStorageProduct[index], 1); // delete item at index
+
+    // After splice array (delete element) push the new array in localStorage
+    arrLocalStorageProduct = [...existingEntries];
+    console.log("set " + arrLocalStorageProduct);
+    window.localStorage.setItem("arr", JSON.stringify(arrLocalStorageProduct));
+}
+
+
+// function to get products from local and add them to <div> p 
+function getProductsInLocal() {
+    // get all products from local.. 
+    let allPro = JSON.parse(window.localStorage.getItem("arr")); // Prototype Array of objects :: Objects
+    // console.log(allPro);
+    // console.log(typeof (allPro));
+    const key = Object.keys(allPro);
+    const map1 = new Map();
+
+    // set element of product from object allpro into new map
+    for (let i = 0; i < key.length; i++) {
+        map1.set(key[i], allPro[i]);
+    }
+
+    // set element from map into div
+    for (let i = 0; i < key.length; i++) {
+        cartsProductsDom.innerHTML += `<p>${map1.get(key[i]).title} <i id="${map1.get(key[i]).id}" onclick="removeItemCart(${map1.get(key[i]).id})" class="fa-solid fa-trash"></i> </p> `;
+
+    }
+    // console.log("My Map");
+    // console.log(key);
+    // console.log(map1);
+    // console.log(map1.get(key[1]).title);
+    // let mew = map1.get(key[1]);
+    // console.log(mew.id);
+}
+getProductsInLocal();
+

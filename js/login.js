@@ -34,7 +34,6 @@ function checkInput() {
     // username ----------------
     if (userValue === getUser) {
         setSeccussFor(username);
-        console.log("True User");
     }
     else if (userValue === '') {
         // Show Error 

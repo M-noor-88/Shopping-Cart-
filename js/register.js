@@ -12,7 +12,7 @@ register_btn.addEventListener("click", function (e) {
     checkInput();
     // Check if All inputs validat
     if (hasSuccsess()) {
-        window.localStorage.setItem("username", username.value);
+        window.localStorage.setItem("username", username.value); 
         window.localStorage.setItem("email", email.value);
         window.localStorage.setItem("password", password.value);
 
@@ -41,6 +41,7 @@ function checkInput() {
     else {
         // Add Seccuss Class
         setSeccussFor(username);
+        
     }
     // password----------------
     if (passValue === '')
