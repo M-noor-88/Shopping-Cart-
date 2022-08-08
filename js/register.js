@@ -1,10 +1,10 @@
 // Regster User Validation
-
 let form = document.querySelector('#form');
 let username = document.querySelector("#user");
 let email = document.querySelector("#email");
 let password = document.querySelector("#password");
 let register_btn = document.querySelector("#sign-up");
+
 
 register_btn.addEventListener("click", function (e) {
     e.preventDefault();
@@ -17,11 +17,9 @@ register_btn.addEventListener("click", function (e) {
         window.localStorage.setItem("password", password.value);
 
         // redirect to login page for validation After 1.5 sec
-        setTimeout(() => { window.location = '../login.html' }, 1500)
-
+        setTimeout(() => { window.location = '../index.html' }, 1500)
     }
 })
-
 
 
 
@@ -59,7 +57,6 @@ function checkInput() {
         setSeccussFor(email);
 
 }
-
 
 
 // Set Error Message And Class -----------------------
@@ -108,4 +105,3 @@ function hasSuccsess() {
     if (username.parentElement.classList.contains('success') && password.parentElement.classList.contains('success') && email.parentElement.classList.contains('success'))
         return true;
 }
-// function hasSuc()

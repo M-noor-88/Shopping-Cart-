@@ -4,6 +4,7 @@ let userDom = document.querySelector('#user');
 let links = document.querySelector('#links');
 let logOut = document.querySelector('#logout');
 
+
 let checkUser = window.localStorage.getItem('username');
 if (checkUser) {
     links.remove();
@@ -14,49 +15,25 @@ else {
     userInfo.remove();
 }
 
-
 // Menu Toggle Responsive mobile will max-width 768px
-
-
 let navigation = document.querySelector('#nav');
 let menuToggle = document.querySelector('.menuToggel');
 
-menuToggle.onclick = function () {
+menuToggle.addEventListener("click", function () {
     navigation.classList.toggle('active');
+});
 
-    // if (navigation.classList.contains('active')) {
-    //     let header_con = navigation.parentElement;
-    //     header_con.style.overflow = 'visible';
-    // }
-    // else
-    //     header_con.style.overflow = 'hidden';
-}
 
-// function to Add name user to menu in mopile
-// function setUserMenu(n) {
-//     let name = document.querySelector(".user-Name");
-//     name.innerHTML = n;
-// }
-// let navigation = document.querySelector('.header-content nav');
-// let menuToggle = document.querySelector('.menuToggel');
-
-// menuToggle.onclick = function () {
-//     navigation.classList.toggle('active');
-// }
 // Log Out button Remaove All data from local storage 
-logOut.addEventListener("click", (e) => {
+logOut.addEventListener("click", function () {
     localStorage.clear();
     window.location = '../register.html';
-})
-
-
-
+});
 
 
 // * ----------------------------------
 // ! Slider Images in Home Section
 // * ----------------------------------
-
 // Get slider items || [Array.from[ES6]]
 let sliderImages = Array.from(document.querySelectorAll(".slide-container .slide"));
 // get number of slide
@@ -64,7 +41,6 @@ let slidecount = sliderImages.length;
 
 // set current slide
 let currentSlide = 1;
-
 
 // Slide number Element
 let slideNumElement = document.getElementById("slide-number");
@@ -120,7 +96,6 @@ window.setTimeout(anima, 3500);
 function anima() {
     currentSlide++;
     theChecker();
-    // console.log(currentSlide);
 }
 
 // Next
@@ -185,15 +160,14 @@ function remaoveAllActive() {
     })
 }
 
-
-// ! ------------------------------------------------------------------
 // * ----------------------------------
 // !  products Section
 // * ----------------------------------
 // Define Products  
 let productsDom = document.querySelector(".products");
 let cartsProductsDom = document.querySelector(".products-added div");
-let badgeCount = document.querySelector(".badge");
+let badgeCount = document.querySelector(" .header-content .badge");
+
 // Array of Products 'Objscts'
 let products = [
     {
@@ -279,6 +253,7 @@ function drawProductUL() {
                     <div class="prod-actions">
                         <button class="add-to-cart" id="${item.id}" >Add to cart</button>
                         <i class="fav fa-solid fa-heart"></i>
+                        <span> Price: 59.99$ </span>
                     </div>
 
                 </div>
@@ -287,72 +262,113 @@ function drawProductUL() {
 }
 drawProductUL();
 //----------------------
-
 //  Add To Cart and Login Checker
 let btnAddCart = Array.from(document.querySelectorAll('.add-to-cart'));
 
-// function to check login user when click Add to cart
+
+
+//  function to check login user when click Add to cart
+let localLength = window.localStorage.length;
 function checkLogAddToCart() {
-    if (checkUser) {
-        // TODO MAke function that hold All functions Add to cart and trigger it here 
-        console.log("Added to Cart");
-    }
-    else {
-        window.location.href = "../register.html";
+
+    if (localLength) {
+        //  ِِActivation button to add items
+        btnAddCart.map((e) => {
+            e.addEventListener("click", function () {
+                addItemToCart(parseInt(e.id)); // pass Argument to function Above  in addEventListener
+            })
+        });
+
+        // ============ display ul on click on cart
+        let cartIcone = document.querySelector(".header-content .cart");
+        let ulProducts = document.querySelector(".products-added ");
+        cartIcone.addEventListener("click", function () {
+            ulProducts.classList.toggle("active");
+        });
     }
 }
-btnAddCart.map((e) => { e.addEventListener("click", checkLogAddToCart) });
+checkLogAddToCart();
 
+// if local empty(No User) 
+btnAddCart.map( (e) => {
+    e.addEventListener('click' , function() {
+        if(localLength == 0)
+            window.location.href = '../register.html';
+    }, {once : true});
+})
+
+
+
+let arrLocalStorageProduct = []; // this array store the products that choose to set in local storage
+//  get from local and convert to Array with make object and push into array
+function GetConvertArr() {
+    // get all products from local.. 
+    let allPro = JSON.parse(window.localStorage.getItem("arr")); // Prototype Array of objects :: Objects
+
+    const key = Object.keys(allPro);
+    const map1 = new Map();
+
+    // set element of product from object allpro into new map
+    for (let i = 0; i < key.length; i++) {
+        map1.set(key[i], allPro[i]);
+    }
+
+    for (let i = 0; i < key.length; i++) {
+        let obj = {
+            id: map1.get(key[i]).id,
+            title: map1.get(key[i]).title,
+            size: map1.get(key[i]).size,
+            imageUrl: map1.get(key[i]).imageUrl,
+        };
+        arrLocalStorageProduct.push(obj);
+    }
+}
+GetConvertArr();
 
 // function to Add item to Cart => get the id of item and found it 
-let arrLocalStorageProduct = []; // this array store the products that choose to set in local storage
 function addItemToCart(id) {
     let choosenItem = products.find(item => item.id === id);
 
     // Set to local after push item into  array arrLocalStorageProduct
     arrLocalStorageProduct.push(choosenItem);
+    // console.log(arrLocalStorageProduct);
 
     cartsProductsDom.innerHTML += `<p>${choosenItem.title} <i id="${choosenItem.id}" onclick="removeItemCart(${choosenItem.id})" class="fa-solid fa-trash"></i> </p> `;
 
     window.localStorage.setItem("arr", JSON.stringify(arrLocalStorageProduct))
 
+    // add count to badge (cart icon)
+    let productlengthCart = document.querySelectorAll(".products-added div p");
+    badgeCount.style.display = "block";
+    badgeCount.innerHTML = productlengthCart.length;
+
+
 }
-btnAddCart.map((e) => {
-    e.addEventListener("click", function () {
-        addItemToCart(parseInt(e.id)); // pass Argument to function Above  in addEventListener
-
-    })
-});
-
-
 
 //  function to remove item from localstorage
 function removeItemCart(id) {
-    let item = arrLocalStorageProduct.find(function (e) {
+    // find element id that choose
+    let item = arrLocalStorageProduct.find((e) => {
         return e.id === id;
     });
 
-    // window.localStorage.removeItem(id);
-    deleteItem(id);
+    // delet from local storage (send index of element)
+    deleteItem(arrLocalStorageProduct.indexOf(item));
+
     // delete from div
     document.getElementById(id).parentElement.remove();
-
+    // decreas counter on icone cart
+    let productlengthCart = document.querySelectorAll(".products-added div p");
+    badgeCount.innerHTML = productlengthCart.length;
 }
 
-
-
-// function To Delete Item from localstorage 
-// we put all products in localStorage to new Array and splice it 
+// function To Delete Item from localstorage
 function deleteItem(index) {
-    var existingEntries = JSON.parse(localStorage.getItem("arr"));
-    existingEntries.splice(arrLocalStorageProduct[index], 1); // delete item at index
-
+    // Get the index of element and splice it
+    arrLocalStorageProduct.splice(index, 1);
     // After splice array (delete element) push the new array in localStorage
-    arrLocalStorageProduct = [...existingEntries];
-    console.log("set " + arrLocalStorageProduct);
     window.localStorage.setItem("arr", JSON.stringify(arrLocalStorageProduct));
 }
-
 
 // function to get products from local and add them to <div> p 
 function getProductsInLocal() {
@@ -373,12 +389,13 @@ function getProductsInLocal() {
         cartsProductsDom.innerHTML += `<p>${map1.get(key[i]).title} <i id="${map1.get(key[i]).id}" onclick="removeItemCart(${map1.get(key[i]).id})" class="fa-solid fa-trash"></i> </p> `;
 
     }
-    // console.log("My Map");
-    // console.log(key);
-    // console.log(map1);
-    // console.log(map1.get(key[1]).title);
-    // let mew = map1.get(key[1]);
-    // console.log(mew.id);
-}
-getProductsInLocal();
 
+    if (allPro.length > 0) {
+        badgeCount.style.display = "block";
+        badgeCount.innerHTML = allPro.length;
+    }
+
+}
+if (localStorage.getItem("arr")) {
+    getProductsInLocal();
+}
