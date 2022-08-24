@@ -5,6 +5,7 @@
     --alter-color: #212934;
     --transition: 0.4s;
 }
+
 html {
     scroll-behavior: smooth;
 }
@@ -21,7 +22,7 @@ a {
 
 li {
     list-style: none;
-    
+
 }
 
 body {
@@ -152,6 +153,7 @@ header nav ul#user_info {
     padding: 10px;
 
 }
+
 /* -------------- */
 /* ! span badge for count item (notification)  */
 /* -------------- */
@@ -197,9 +199,11 @@ header nav ul#user_info .products-added {
     /* onclick() in js  */
     display: none;
 }
+
 header nav ul#user_info .products-added.active {
     display: block;
 }
+
 header nav ul#user_info .products-added .view-all {
     display: block;
     background-color: var(--main-color);
@@ -216,10 +220,12 @@ header nav ul#user_info .products-added .view-all {
     -moz-transition: var(--transition);
     -ms-transition: var(--transition);
 }
+
 header nav ul#user_info .products-added .view-all:hover {
     color: var(--main-color);
     background-color: #fff;
 }
+
 @media(max-width:768px) {
     header nav ul#user_info .products-added {
         top: 10px;
@@ -249,10 +255,11 @@ header nav ul#user_info .products-added p::before {
     width: 4px;
     background-color: var(--main-color);
 }
-header nav ul#user_info .products-added p > i {
+
+header nav ul#user_info .products-added p>i {
     cursor: pointer;
     margin-left: 3px;
-    
+
 }
 
 /*  * ------------------------------- */
@@ -873,6 +880,7 @@ nav.active .menuToggel::after {
     justify-content: flex-start;
     gap: 10px;
 }
+
 .product-item .prod-actions span {
     border-bottom: 2px solid #000000;
     padding: 5px 0;
@@ -944,4 +952,119 @@ nav.active .menuToggel::after {
         padding: .75rem 3rem;
         font-size: 1.25rem;
     }
+}
+
+/* ! End Section products -----------------------  */
+/* * Start Description section  */
+.info {
+    position: relative;
+    margin:20px 0;
+}
+
+.info .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.info .container img {
+    width: 400px;
+    display: flex;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    border-bottom: 3px solid var(--main-color);
+    border-top: 3px solid var(--main-color);
+}
+
+@media(max-width:768px) {
+    .info .container {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .info .container img {
+        width: 300px;
+    }
+}
+
+.info .descrip {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info .descrip h2 {
+    margin-bottom: 15px;
+    padding: 10px;
+    position: relative;
+    letter-spacing: 1px;
+}
+
+.info .descrip h2::after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 7px;
+    background-color: var(--main-color);
+    left: 0;
+    top: 0;
+}
+
+@media(max-width:768px) {
+    .info .descrip h2 {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .info .descrip h2::after {
+        width: 4px;
+    }
+}
+
+.info .descrip p {
+    margin-top: 10px;
+    color: #555;
+    letter-spacing: 0.5px;
+    line-height: 2;
+}
+
+@media(max-width:768px) {
+    .info .descrip p {
+        font-size: 14px;
+        line-height: 2;
+    }
+}
+
+.info .descrip .read-more-btn {
+    width: fit-content;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid var(--main-color);
+    color: var(--main-color);
+    border-radius: 15px 0 15px;
+    -webkit-border-radius: 15px 0 15px;
+    -moz-border-radius: 15px 0 15px;
+    -ms-border-radius: 15px 0 15px;
+    transition: 0.6s;
+    cursor: pointer;
+    -webkit-transition: 0.6s;
+    -moz-transition: 0.6s;
+    -ms-transition: 0.6s;
+}
+
+.info .descrip .read-more-btn:hover {
+    background-color: var(--main-color);
+    color: #fff;
+
+}
+
+.info .descrip .more {
+    display: none;
+}
+.info .descrip .text.show .more {
+    display: block;
 }

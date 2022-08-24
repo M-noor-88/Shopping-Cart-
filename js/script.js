@@ -27,7 +27,17 @@ menuToggle.addEventListener("click", function () {
 // Log Out button Remaove All data from local storage 
 logOut.addEventListener("click", function () {
     localStorage.clear();
-    window.location = '../register.html';
+    window.location.href = 'register.html';
+});
+
+// * ----------------------------------
+// ! Third section Read More
+// * ----------------------------------
+
+let readMoreBtn = document.querySelector(" .info .descrip .read-more-btn");
+let textMore = document.querySelector(" .info .descrip .text");
+readMoreBtn.addEventListener("click", () => {
+    textMore.classList.toggle("show");
 });
 
 
@@ -265,8 +275,6 @@ drawProductUL();
 //  Add To Cart and Login Checker
 let btnAddCart = Array.from(document.querySelectorAll('.add-to-cart'));
 
-
-
 //  function to check login user when click Add to cart
 let localLength = window.localStorage.length;
 function checkLogAddToCart() {
@@ -290,11 +298,11 @@ function checkLogAddToCart() {
 checkLogAddToCart();
 
 // if local empty(No User) 
-btnAddCart.map( (e) => {
-    e.addEventListener('click' , function() {
-        if(localLength == 0)
+btnAddCart.map((e) => {
+    e.addEventListener('click', function () {
+        if (localLength == 0)
             window.location.href = '../register.html';
-    }, {once : true});
+    }, { once: true });
 })
 
 
@@ -323,7 +331,7 @@ function GetConvertArr() {
         arrLocalStorageProduct.push(obj);
     }
 }
-GetConvertArr();
+GetConvertArr(); // ! if there Error for Null from local (try triggre in checkLogAddToCart()) after map
 
 // function to Add item to Cart => get the id of item and found it 
 function addItemToCart(id) {
@@ -399,3 +407,4 @@ function getProductsInLocal() {
 if (localStorage.getItem("arr")) {
     getProductsInLocal();
 }
+

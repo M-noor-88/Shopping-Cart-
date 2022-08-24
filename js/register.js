@@ -17,7 +17,7 @@ register_btn.addEventListener("click", function (e) {
         window.localStorage.setItem("password", password.value);
 
         // redirect to login page for validation After 1.5 sec
-        setTimeout(() => { window.location = '../index.html' }, 1500)
+        setTimeout(() => { window.location.href = 'index.html' }, 1500)
     }
 })
 

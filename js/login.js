@@ -20,7 +20,7 @@ function login(e) {
     // Check if All inputs validat
     if (hasSuccsess())
         // redirect to login page for validation After 1.5 sec
-        setTimeout(() => { window.location = '../index.html';}, 1500)
+        setTimeout(() => { window.location.href = 'index.html';}, 1500)
 }
 
 
