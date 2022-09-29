@@ -324,7 +324,10 @@ function checkLogAddToCart() {
 
     }
 }
-checkLogAddToCart();
+if(window.localStorage.getItem("arr")) {
+    checkLogAddToCart();
+}
+
 
 // if local empty(No User) 
 btnAddCart.map((e) => {
@@ -360,7 +363,7 @@ function GetConvertArr() {
         arrLocalStorageProduct.push(obj);
     }
 }
-if (localLength) {
+if (window.localStorage.getItem("arr")) {
     GetConvertArr();
 }
 
