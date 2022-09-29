@@ -130,7 +130,6 @@ function Prev() {
     }
 }
 
-
 // Checker function 
 function theChecker() {
     // set the slide number
@@ -170,6 +169,35 @@ function remaoveAllActive() {
     })
 }
 
+// ! -------------- Categry Section 
+let indecator = document.querySelector(".category .indecator").children;
+let main = document.querySelector(".category  .items").children;
+
+for (let i = 0; i < indecator.length; i++) {
+    indecator[i].addEventListener('click', function () {
+        for (let q = 0; q < indecator.length; q++) {
+            indecator[q].classList.remove('active');
+        }
+        this.classList.add('active');
+        const displayItem = this.getAttribute('data-filter');
+        for (let y = 0; y < main.length; y++) {
+            main[y].style.transform = 'scale(0)';
+            setTimeout(() => {
+                main[y].style.display = 'none';
+            }, 500)
+
+            if (main[y].getAttribute('data-category') == displayItem || displayItem == 'all') {
+                main[y].style.transform = 'scale(1)';
+                setTimeout(() => {
+                    main[y].style.display = 'block';
+                }, 500)
+
+            }
+        }
+
+    })
+
+}
 // * ----------------------------------
 // !  products Section
 // * ----------------------------------
@@ -293,6 +321,7 @@ function checkLogAddToCart() {
         cartIcone.addEventListener("click", function () {
             ulProducts.classList.toggle("active");
         });
+
     }
 }
 checkLogAddToCart();
@@ -331,7 +360,9 @@ function GetConvertArr() {
         arrLocalStorageProduct.push(obj);
     }
 }
-GetConvertArr(); // ! if there Error for Null from local (try triggre in checkLogAddToCart()) after map
+if (localLength) {
+    GetConvertArr();
+}
 
 // function to Add item to Cart => get the id of item and found it 
 function addItemToCart(id) {
@@ -407,4 +438,46 @@ function getProductsInLocal() {
 if (localStorage.getItem("arr")) {
     getProductsInLocal();
 }
+// ========
+// ! Search function 
+//==========
+let searchInp = document.getElementById("search");
 
+searchInp.addEventListener("input", function (e) {
+    const value = e.target.value;
+    products.forEach(user => {
+        const isVisible = user.title.includes(value) || user.size.includes(value.toLocaleLowerCase());
+        let parent = document.getElementById(`${user.id}`).parentNode.parentNode;
+        if (!isVisible) {
+            parent.classList.add("hide");
+        } else {
+            parent.classList.remove("hide");
+        }
+    })
+})
+// ========
+// ! Achievment section increas number on scroll
+//==========
+let nums = document.querySelectorAll(".nums .num .number");
+let section = document.querySelector(".ach");
+let started = false // Function Start  ? No
+window.onscroll = function () {
+    if (window.scrollY >= section.offsetTop - 300) {
+        if (!started) {
+            nums.forEach((num) => startCount(num));
+        }
+        started = true;
+    }
+}
+
+
+function startCount(el) {
+    let goal = el.dataset.goal;
+    let count = setInterval(() => {
+        el.textContent++;
+        if (el.textContent == goal) {
+            clearInterval(count);
+        }
+    }, 2000 / goal); // for increas all at the same time
+
+}
