@@ -333,7 +333,7 @@ if(window.localStorage.length >= 2) {
 btnAddCart.map((e) => {
     e.addEventListener('click', function () {
         if (localLength == 0)
-            window.location.href = '../register.html';
+            window.location.href = 'register.html';
     }, { once: true });
 })
 
