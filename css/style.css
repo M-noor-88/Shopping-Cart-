@@ -1229,6 +1229,7 @@ nav.active .menuToggel::after {
     align-items: center;
     justify-content: space-between;
     gap: 10px;
+    flex-wrap: wrap;
 }
 
 .ach .nums .num {
