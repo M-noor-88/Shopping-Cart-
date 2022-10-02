@@ -324,7 +324,7 @@ function checkLogAddToCart() {
 
     }
 }
-if(window.localStorage.getItem("arr")) {
+if(window.localStorage.length >= 2) {
     checkLogAddToCart();
 }
 
