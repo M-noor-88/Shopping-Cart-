@@ -3,6 +3,9 @@
 
 This Shoe Shopping Cart is a web application that allows users to browse and purchase shoes online. Built using only HTML, CSS, and JavaScript, it provides a seamless shopping experience with a range of features and a user-friendly interface.
 
+## Live Demo
+- https://m-noor-88.github.io/Shopping-Cart-/
+
 ## Features
 
 1. **Sign-up / Sign-in / Logout**: Users can create accounts, log in to their existing accounts, and log out when they are done. This ensures a personalized shopping experience and secure access to user-specific information.
